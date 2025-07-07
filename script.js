@@ -146,11 +146,6 @@ function update(id) {
   });
 }
 
-// function countCart(){
-//   const cartList = JSON.parse(localStorage.getItem('cartList'))
-//   document.querySelector('#cartCount').innerHTML = cartList.length
-// }
-// countCart()
 
 function countCart() {
   const cartList = JSON.parse(localStorage.getItem('cartList'));
