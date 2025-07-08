@@ -1,10 +1,8 @@
 const productInfo = document.querySelector("#productInfo");
 
- let productList = JSON.parse(localStorage.getItem("productList"));
+let productList = JSON.parse(localStorage.getItem("productList"));
 
-
-productInfo.addEventListener('submit',(e) => {
- 
+productInfo.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const category = document.querySelector("#category").value;
@@ -25,7 +23,6 @@ productInfo.addEventListener('submit',(e) => {
   arr.push(newProduct);
   localStorage.setItem("productList", JSON.stringify(arr));
   location.reload();
-  
 });
 
 function show() {
@@ -60,10 +57,8 @@ function AddToCart(id) {
     return product.id === id;
   });
 
-  ///////check cart exict or not
   let cartList = JSON.parse(localStorage.getItem("cartList")) || [];
 
-  //////check cart exict or not  base on id
   const singleCart = cartList.find((cart) => {
     return cart.id === id;
   });
@@ -82,7 +77,7 @@ function AddToCart(id) {
   localStorage.setItem("cartList", JSON.stringify(cartList));
 }
 
- ///////////// DELETE
+///////////// DELETE
 function trash(id) {
   if (confirm("do you want to delete this product?")) {
     const filterProduct = productList.filter((product) => {
@@ -99,43 +94,37 @@ function trash(id) {
 }
 
 // UPDATE BUTTON
-
 function update(id) {
-  alert("update card ............")
+  alert("update card ............");
   document.querySelector("#Submit").style.display = "none";
   document.querySelector("#update").style.display = "block";
 
-  // FIND USER FOR ONE
   const singleUser = productList.find((product) => {
     return product.id === id;
   });
   console.log(singleUser);
 
   let category = document.querySelector("#category");
-  let p_name   = document.querySelector("#p_name");
-  let p_price  = document.querySelector("#p_price");
-  let p_url   = document.querySelector("#p_url");
-  //  alert(id)
+  let p_name = document.querySelector("#p_name");
+  let p_price = document.querySelector("#p_price");
+  let p_url = document.querySelector("#p_url");
 
-  
-   category.value = singleUser. category;
-   p_name.value = singleUser.p_name;
-   p_price.value = singleUser.p_price;
-   p_url.value = singleUser.p_url;
+  category.value = singleUser.category;
+  p_name.value = singleUser.p_name;
+  p_price.value = singleUser.p_price;
+  p_url.value = singleUser.p_url;
 
-  // Update Button Click
   document.querySelector("#update").addEventListener("click", () => {
     alert("update data............");
     const newUser = {
       id,
-      category:category.value,
-       p_name: p_name.value,
+      category: category.value,
+      p_name: p_name.value,
       p_price: p_price.value,
-      p_url:p_url.value,
+      p_url: p_url.value,
     };
     console.log(newUser);
 
-    // Save Updated User
     const index = productList.findIndex((product) => {
       return product.id === id;
     });
@@ -146,15 +135,14 @@ function update(id) {
   });
 }
 
-
 function countCart() {
-  const cartList = JSON.parse(localStorage.getItem('cartList'));
-  
+  const cartList = JSON.parse(localStorage.getItem("cartList"));
+
   let totalQty = 0;
   cartList.forEach((item) => {
     totalQty += item.count;
   });
 
-  document.querySelector('#cartCount').innerHTML = totalQty;
+  document.querySelector("#cartCount").innerHTML = totalQty;
 }
 countCart();
